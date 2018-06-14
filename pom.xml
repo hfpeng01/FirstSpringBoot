@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.9.RELEASE</version>
+    </parent>
+
+    <artifactId>TestWebApp</artifactId>
+    <packaging>jar</packaging>
+
+    <name>TestWebApp</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- Package as an executable JAR -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>test</id>
+            <dependencies>
+
+                <!--<dependency>
+                    <groupId>com.sohu.union</groupId>
+                    <artifactId>union-decrypt-core</artifactId>
+                    <version>1.1-SNAPSHOT</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>lzo</artifactId>
+                    <version>0.4.14</version>
+                </dependency>-->
+                <dependency>
+                    <groupId>org.apache.storm</groupId>
+                    <artifactId>storm-core</artifactId>
+                    <version>0.9.5</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-common</artifactId>
+                    <version>2.7.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-client</artifactId>
+                    <version>2.7.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-hdfs</artifactId>
+                    <version>2.7.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hbase</groupId>
+                    <artifactId>hbase</artifactId>
+                    <version>0.94.2-cdh4.2.0</version>
+                </dependency>
+
+                <!-- compile -->
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>1.8.0.10</version>
+                </dependency>
+                <dependency>
+                    <groupId>oro</groupId>
+                    <artifactId>oro</artifactId>
+                    <version>2.0.8</version>
+                </dependency>
+
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>hadoop1</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-core</artifactId>
+                    <version>1.0.0</version>
+                    <scope>provided</scope>
+                </dependency>
+                <!--  <dependency>
+                      <groupId>org.apache.hbase</groupId>
+                      <artifactId>hbase</artifactId>
+                      <version>0.92.2</version>
+                      <scope>provided</scope>
+                  </dependency>
+                  <dependency>
+                      <groupId>org.apache.hive</groupId>
+                      <artifactId>hive-exec</artifactId>
+                      <version>0.10.0</version>
+                      <scope>provided</scope>
+                  </dependency>-->
+
+                <dependency>
+                    <groupId>org.anarres.lzo</groupId>
+                    <artifactId>lzo-hadoop</artifactId>
+                    <version>1.0.0</version>
+                    <scope>provided</scope>
+                    <exclusions>
+                        <exclusion>
+                            <groupId>org.apache.hadoop</groupId>
+                            <artifactId>hadoop-core</artifactId>
+                        </exclusion>
+                    </exclusions>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>hadoop2</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.hadoop.gplcompression</groupId>
+                    <artifactId>hadoop-lzo</artifactId>
+                    <version>0.4.19</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-common</artifactId>
+                    <version>2.7.1</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-client</artifactId>
+                    <version>2.7.1</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hadoop</groupId>
+                    <artifactId>hadoop-hdfs</artifactId>
+                    <version>2.7.1</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hbase</groupId>
+                    <artifactId>hbase</artifactId>
+                    <version>0.94.2-cdh4.2.0</version>
+                    <scope>provided</scope>
+                </dependency>
+
+                <!-- compile -->
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>1.8.0.10</version>
+                </dependency>
+                <dependency>
+                    <groupId>oro</groupId>
+                    <artifactId>oro</artifactId>
+                    <version>2.0.8</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.hive.hcatalog</groupId>
+                    <artifactId>hive-hcatalog-core</artifactId>
+                    <version>0.13.1-cdh5.2.1</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+</project>
